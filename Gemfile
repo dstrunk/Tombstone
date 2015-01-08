@@ -17,7 +17,8 @@ gem 'jquery-rails'
 gem 'clearance'
 # Rails Admin for administration
 gem 'rails_admin'
-
+# ActiveModel Serializers for JSON output
+gem 'active_model_serializers'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
