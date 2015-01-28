@@ -6,10 +6,6 @@ class AuraPresenter < SimpleDelegator
     pending.count
   end
 
-  def approved_count
-    approved.count
-  end
-
   def live_count
     live.count
   end
