@@ -1,9 +1,9 @@
 class Aura < ActiveRecord::Base
-  validates_presence_of :name, :start_date, :end_date, :status_id, :job_number_id 
+  validates_presence_of :name, :start_date, :end_date
   validates_uniqueness_of :name
+  enum status: [:pending, :approved, :live, :denied, :archived]
 
   belongs_to :job_number, inverse_of: :auras
-  belongs_to :status, inverse_of: :auras
 
   rails_admin do
     edit do
@@ -11,9 +11,13 @@ class Aura < ActiveRecord::Base
       field :name
       field :start_date
       field :end_date
-      field :status, :belongs_to_association
+      field :status
     end
 
     exclude_fields :id, :created_at, :updated_at
+  end
+
+  def status_enum
+    ['pending', 'approved', 'live', 'denied', 'archived']
   end
 end

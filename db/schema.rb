@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108220839) do
+ActiveRecord::Schema.define(version: 20150128203722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150108220839) do
     t.integer  "job_number_id"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "status",        default: 0
   end
 
   add_index "auras", ["job_number_id"], name: "index_auras_on_job_number_id", using: :btree
@@ -31,12 +32,6 @@ ActiveRecord::Schema.define(version: 20150108220839) do
 
   create_table "job_numbers", force: true do |t|
     t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "statuses", force: true do |t|
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
