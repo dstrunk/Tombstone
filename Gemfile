@@ -19,6 +19,8 @@ gem 'clearance'
 gem 'rails_admin'
 # ActiveModel Serializers for JSON output
 gem 'active_model_serializers'
+# CanCanCan for authorization
+gem 'cancancan'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
