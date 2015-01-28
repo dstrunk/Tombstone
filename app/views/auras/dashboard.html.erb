@@ -1,1 +1,20 @@
 <h1><%= pluralize(@auras.remaining_count, 'remaining', 'remaining') %> of 30</h1> 
+
+<div class="count count--pending">
+  <h2>Pending auras</h2>
+  <%= @auras.pending_count %>
+</div>
+
+<div class="count count--approved">
+  <h2>Approved auras</h2>
+  <%= @auras.approved_count %>
+</div>
+
+<div class="count count--live">
+  <h2>Live auras</h2>
+  <%= @auras.live_count %>
+</div>
+
+<% @auras.pending.each do |aura| %>
+  <%= aura %>
+<% end %>

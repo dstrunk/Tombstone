@@ -2,20 +2,44 @@ require 'delegate'
 
 class AuraPresenter < SimpleDelegator
 
+  def pending
+    model.includes(:status)
+      .where("state = ?", "pending")
+      .references(:status)
+  end
+
   def pending_count
-    model.where(status: "pending").count
+    pending.count
+  end
+
+  def approved
+    model.includes(:status)
+      .where("state = ?", "approved")
+      .references(:status)
   end
 
   def approved_count
-    model.where(status: "approved").count
+    approved.count
+  end
+
+  def live
+    model.includes(:status)
+      .where("state = ?", "live")
+      .references(:status)
   end
 
   def live_count
-    model.where(status: "live").count
+    live.count
+  end
+
+  def archived
+    model.includes(:status)
+      .where("state = ?", "archived")
+      .references(:status)
   end
 
   def archived_count
-    model.where(status: "archived").count
+    archived.count
   end
 
   def remaining_count

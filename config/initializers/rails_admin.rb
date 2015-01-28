@@ -17,5 +17,5 @@ RailsAdmin.config do |config|
 
   config.current_user_method { current_user }
 
-  config.excluded_models = ["JobNumber", "Status"]
+  # config.excluded_models = ["JobNumber", "Status"]
 end
