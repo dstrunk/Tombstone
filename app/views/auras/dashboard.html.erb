@@ -1,3 +1,9 @@
+<% if !current_user %>
+  <div class="intro">
+    Sign up or sign in to begin filling out the Aura request. Note that your request depends on the availability of remaining auras and pending auras in the queue. If your request is a rush or is for a high-profile client, please contact Jaek Amos at <a href="mailto:jamos@communicorp.com">jamos@communicorp.com</a> with any relevant information.
+  </div>
+<% end %>
+
 <div class="count count--remaining">
   <h2>Remaining auras</h2>
   <div class="count__number">
@@ -20,14 +26,16 @@
   </div>
 </div>
 
-<div class="count count--timeline">
+<!--<div class="count count--timeline">
   <h2>Timeline <small>All live auras with their starting and ending dates</small></h2>
-</div>
+
+  <%= @auras.to_json %>
+</div>-->
 
 <div class="count count--ending">
-  <h2>Ending soon</h2>
+  <h2>Ending soon <small>Sorted by closest to today</small></h2>
   <% if @auras.recently_ending %>
-    <ul>
+    <ol>
       <% @auras.recently_ending.each do |aura| %>
         <% if aura.end_date.past? %>
           <li style="color: #ff1800"><%= aura.name %> - -<%= time_ago_in_words(aura.end_date) %>
@@ -35,7 +43,7 @@
           <li style="color: #ffd200"><%= aura.name %> - <%= time_ago_in_words(aura.end_date) %></li>
         <% end %>
       <% end %>
-    </ul>
+    </ol>
   <% end %>
 </div>
 

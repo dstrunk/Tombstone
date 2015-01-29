@@ -21,7 +21,7 @@ class AuraPresenter < SimpleDelegator
   def recently_ending
     live
       .where("end_date < ?", DateTime.now + 30.days)
-      .order(end_date: :desc)
+      .order(end_date: :asc)
   end
 
   def model
