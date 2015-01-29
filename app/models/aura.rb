@@ -1,5 +1,5 @@
 class Aura < ActiveRecord::Base
-  validates_presence_of :name, :start_date, :end_date
+  validates_presence_of :name, :start_date, :end_date, :status
   validates_uniqueness_of :name
   enum status: [:pending, :approved, :live, :denied, :archived]
 
@@ -17,6 +17,7 @@ class Aura < ActiveRecord::Base
     exclude_fields :id, :created_at, :updated_at
   end
 
+  # For Rails Admin
   def status_enum
     ['pending', 'approved', 'live', 'denied', 'archived']
   end

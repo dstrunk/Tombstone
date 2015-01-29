@@ -10,10 +10,14 @@ class AurasController < ApplicationController
 
   def create
     @aura = Aura.new(aura_params)
+    @aura.status = "pending"
+
     if @aura.save
-      redirect_to "dashboard", flash[:notice] = ""
+      redirect_to "dashboard"
+      flash[:notice] = "Your request has been submitted! We'll get back to you shortly."
     else
-      redirect_to "new", flash.now[:alert] = ""
+      redirect_to "new"
+      flash.now[:alert] = "Something went wrong. Please try again."
     end
   end
 

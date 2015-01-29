@@ -1,11 +1,41 @@
-<h1><%= pluralize(@auras.remaining_count, 'remaining', 'remaining') %> of 30</h1> 
+<div class="count count--remaining">
+  <h2>Remaining auras</h2>
+  <div class="count__number">
+    <%= @auras.remaining_count %>
+  </div>
+
+  <div class="count__text">
+    Auras remain until our 30 Aura limit is reached.
+  </div>
+</div>
 
 <div class="count count--pending">
   <h2>Pending auras</h2>
-  <%= @auras.pending_count %>
+  <div class="count__number">
+    <%= @auras.pending_count %>
+  </div>
+
+  <div class="count__text">
+    Auras need to be approved or denied.
+  </div>
 </div>
 
-<div class="count count--live">
-  <h2>Live auras</h2>
-  <%= @auras.live_count %>
+<div class="count count--timeline">
+  <h2>Timeline <small>All live auras with their starting and ending dates</small></h2>
 </div>
+
+<div class="count count--ending">
+  <h2>Ending soon</h2>
+  <% if @auras.recently_ending %>
+    <ul>
+      <% @auras.recently_ending.each do |aura| %>
+        <% if aura.end_date.past? %>
+          <li style="color: #ff1800"><%= aura.name %> - -<%= time_ago_in_words(aura.end_date) %>
+        <% else %>
+          <li style="color: #ffd200"><%= aura.name %> - <%= time_ago_in_words(aura.end_date) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+

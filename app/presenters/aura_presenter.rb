@@ -18,6 +18,12 @@ class AuraPresenter < SimpleDelegator
     30 - live_count
   end
 
+  def recently_ending
+    live
+      .where("end_date < ?", DateTime.now + 30.days)
+      .order(end_date: :desc)
+  end
+
   def model
     __getobj__
   end
