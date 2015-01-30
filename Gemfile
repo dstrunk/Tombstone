@@ -23,6 +23,10 @@ gem 'active_model_serializers'
 gem 'cancancan'
 # D3
 gem 'd3-rails'
+# Gon to easily pass Ruby variables to JavaScript
+gem 'gon'
+# RABL for customizing JSON response for JavaScript
+gem 'rabl'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
