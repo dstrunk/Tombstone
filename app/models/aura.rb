@@ -10,13 +10,14 @@ class Aura < ActiveRecord::Base
     edit do
       field :job_number, :belongs_to_association
       field :customer, :belongs_to_association
+      field :description
       field :name
       field :start_date
       field :end_date
       field :status
     end
 
-    exclude_fields :id, :created_at, :updated_at, :description
+    exclude_fields :id, :created_at, :updated_at
   end
 
   # For Rails Admin
