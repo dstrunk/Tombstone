@@ -1,4 +1,5 @@
 class Aura < ActiveRecord::Base
+  include Workflow
   validates_presence_of :name, :start_date, :end_date, :status
   validates_uniqueness_of :name
   enum status: [:pending, :approved, :live, :denied, :archived]
@@ -25,7 +26,6 @@ class Aura < ActiveRecord::Base
     ['pending', 'approved', 'live', 'denied', 'archived']
   end
 
-  include Workflow
   workflow_column :status
 
   workflow do
