@@ -24,4 +24,15 @@ class Aura < ActiveRecord::Base
   def status_enum
     ['pending', 'approved', 'live', 'denied', 'archived']
   end
+
+  include Workflow
+  workflow_column :status
+
+  workflow do
+    state :pending
+    state :approved
+    state :live
+    state :denied
+    state :archived
+  end
 end
