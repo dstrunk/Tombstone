@@ -1,0 +1,55 @@
+#timeline-d3 {
+  border: 1px solid #ababab;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+.aura {
+  fill: #0076c8;
+  clip-path: url(#clip);
+  cursor: pointer;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #2e303a;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.tooltip {
+  position: absolute;
+  font: 10px sans-serif;
+  background: #005593;
+  color: white;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #7a7a7a;
+}
+
+.tooltip__title strong {
+  padding-right: 15px;
+}
+
+.tooltip__title {
+  display: block;
+  padding-bottom: 5px;
+  border-bottom: 1px solid darken(#005593, 10%);
+  margin-bottom: 5px;
+}
+
+.tooltip__name {
+  display: block;
+}
+
+.tooltip__desc {
+  display: block;
+}

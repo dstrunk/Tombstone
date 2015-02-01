@@ -44,6 +44,10 @@
   focus = svg.append("g")
     .attr("class", "focus")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  
+  tip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0)
 
   focus.append("g")
     .attr("class", "auras")
@@ -56,6 +60,27 @@
     .attr("y", function (d, i) { return i * 25 })
     .attr("width", function (d) { return x(d.end) - x(d.start) })
     .attr("height", 15)
+    .on("mouseover", function(d) {
+      info = '<span class="tooltip__title">'
+      if (d.job_number !== "") {
+        info += "<strong>Job number: " + d.job_number + "</strong>";
+      }
+      info += '<span class="tooltip__customer">' + d.customer + '</span>';
+      info += '</span>'
+      info += '<span class="tooltip__name">Name: ' + d.name + '</span>';
+      info += '<span class="tooltip__desc">Description: ' + d.description + '</span>';
+      tip.transition()
+        .duration(200)
+        .style("opacity", 0.9)
+      tip.html(info)
+        .style("left", (d3.event.pageX + 20) + "px")
+        .style("top", (d3.event.pageY - 5) + "px")
+    })
+    .on("mouseout", function(d) {
+      tip.transition()
+        .duration(200)
+        .style("opacity", 0)
+    })
 
   focus.append("g")
     .attr("class", "x axis")
