@@ -29,9 +29,19 @@ $ ->
     .domain([timeline.minDate, timeline.maxDate])
     .range([0, width])
 
+  timeline.offset     = 4
   timeline.miniHeight = auras.length * 12 + 50
   timeline.mainHeight = height - timeline.miniHeight - 50
+  timeline.trackHeight = Math.min((height - timeline.offset) / timeline.length, 20)
 
+  timeline.xScale = d3.time.scale()
+    .domain([timeline.minDate, timeline.maxDate])
+    .range([0, width])
+  timeline.x2Scale = d3.time.scale()
+    .range([0, width])
+
+  timeline.yScale = () ->
+    timeline.offset + timeline.trackHeight
 
   # Chart setup
   chart = d3.select("#timeline")
@@ -46,8 +56,11 @@ $ ->
     .attr("class", "main")
     .attr("height", timeline.mainHeight)
 
+  main.xScale = d3.time.scale()
+    .range([0, width])
+
   mini = chart.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("transform", "translate(" + margin.left + "," + (timeline.mainHeight + margin.top) + ")")
     .attr("width", width)
     .attr("class", "mini")
     .attr("height", timeline.miniHeight)
@@ -69,3 +82,19 @@ $ ->
     .attr("width", (d) -> timeline.auraLength(d.end) - timeline.auraLength(d.start))
     .attr("height", 15)
     .attr("fill", "red")
+
+  # Brush
+  brush = d3.svg.brush()
+    .x(timeline.xScale)
+    .on "brush", () ->
+      domain = if brush.empty() then timeline.xScale.domain() else brush.extent()
+      main.xScale(domain)
+
+
+  mini.append("g")
+    .attr("class", "x brush")
+    .call(brush)
+    .selectAll("rect")
+    .attr("y", 0)
+    .attr("height", timeline.miniHeight)
+
