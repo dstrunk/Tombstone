@@ -24,7 +24,6 @@
 
   xAxis  = d3.svg.axis().scale(x).orient("bottom")
   xAxis2 = d3.svg.axis().scale(x2).orient("bottom")
-  yAxis  = d3.svg.axis().scale(y).orient("left")
 
   brush = d3.svg.brush()
     .x(x2)
@@ -62,11 +61,6 @@
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis)
-
-  focus.append("g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(yAxis)
 
   context = svg.append("g")
     .attr("class", "context")
