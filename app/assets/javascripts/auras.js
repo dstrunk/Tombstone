@@ -7,11 +7,15 @@
 
   minDate = d3.min(auras, function (d) { return d.start })
   maxDate = d3.max(auras, function (d) { return d.end })
+  // height = 500 - margin.top - margin.bottom
+  // height2 = 500 - margin2.top - margin2.bottom
+  height = auras.length * 25 + 15
+  height2 = auras.length * 7 - 5
+  // margin = {top: 10, right: 10, bottom: 100, left: 40}
+  // margin2 = {top: 430, right: 10, bottom: 20, left: 40}
   margin = {top: 10, right: 10, bottom: 100, left: 40}
-  margin2 = {top: 430, right: 10, bottom: 20, left: 40}
+  margin2 = {top: height, right: 10, bottom: 20, left: 40}
   width = 960 - margin.left - margin.right
-  height = 500 - margin.top - margin.bottom
-  height2 = 500 - margin2.top - margin2.bottom
 
   x  = d3.time.scale()
     .range([0, width])
