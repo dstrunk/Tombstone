@@ -9,12 +9,12 @@
   maxDate = d3.max(auras, function (d) { return d.end })
   // height = 500 - margin.top - margin.bottom
   // height2 = 500 - margin2.top - margin2.bottom
-  height = auras.length * 25 + 15
-  height2 = auras.length * 7 - 5
+  height = auras.length * 20 + 15
+  height2 = auras.length * 7 + 5
   // margin = {top: 10, right: 10, bottom: 100, left: 40}
   // margin2 = {top: 430, right: 10, bottom: 20, left: 40}
-  margin = {top: 10, right: 10, bottom: 100, left: 40}
-  margin2 = {top: height, right: 10, bottom: 20, left: 40}
+  margin = {top: 10, right: 10, bottom: height2 + 50, left: 40}
+  margin2 = {top: height + 50, right: 10, bottom: 20, left: 40}
   width = 960 - margin.left - margin.right
 
   x  = d3.time.scale()
@@ -37,7 +37,7 @@
     .append("svg")
     .attr("id", "timeline-d3")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", height + height2 + 100)
 
   svg.append("defs").append("clipPath")
     .attr("id", "clip")
@@ -61,7 +61,7 @@
     .enter().append("rect")
     .attr("class", "aura")
     .attr("x", function (d) { return x(d.start) })
-    .attr("y", function (d, i) { return i * 25 })
+    .attr("y", function (d, i) { return i * 20 })
     .attr("width", function (d) { return x(d.end) - x(d.start) })
     .attr("height", 15)
     .on("mouseover", function(d) {
