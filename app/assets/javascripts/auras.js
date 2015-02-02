@@ -68,7 +68,9 @@
       info += '<span class="tooltip__customer">' + d.customer + '</span>';
       info += '</span>'
       info += '<span class="tooltip__name">Name: ' + d.name + '</span>';
-      info += '<span class="tooltip__desc">Description: ' + d.description + '</span>';
+      if (d.description) {
+        info += '<span class="tooltip__desc">Description: ' + d.description + '</span>';
+      }
       info += '<span class="tooltip__time">';
       info += '<span class="tooltip__time--start">' + moment(d.start).format('MMMM Do YYYY') + '</span>';
       info += '<span class="tooltip__time--end">' + moment(d.end).format('MMMM Do YYYY') + '</span>';
@@ -84,6 +86,8 @@
       tip.transition()
         .duration(200)
         .style("opacity", 0)
+        .style("left", 0)
+        .style("top", 0)
     })
 
   focus.append("g")

@@ -27,8 +27,6 @@ gem 'd3-rails'
 gem 'gon'
 # RABL for customizing JSON response for JavaScript
 gem 'rabl'
-# Workflow gem for defining and managing rules based on aura states
-gem 'workflow'
 # MomentJS for front-end date parsing
 gem 'momentjs-rails'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
