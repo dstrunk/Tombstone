@@ -7,14 +7,10 @@
 
   minDate = d3.min(auras, function (d) { return d.start })
   maxDate = d3.max(auras, function (d) { return d.end })
-  // height = 500 - margin.top - margin.bottom
-  // height2 = 500 - margin2.top - margin2.bottom
-  height = auras.length * 20 + 15
-  height2 = auras.length * 7 + 5
-  // margin = {top: 10, right: 10, bottom: 100, left: 40}
-  // margin2 = {top: 430, right: 10, bottom: 20, left: 40}
-  margin = {top: 10, right: 10, bottom: height2 + 50, left: 40}
-  margin2 = {top: height + 50, right: 10, bottom: 20, left: 40}
+  height = auras.length * 15 + 10
+  height2 = auras.length * 3 + 2
+  margin = {top: 10, right: 10, bottom: height2 + 50, left: 10}
+  margin2 = {top: height + 50, right: 10, bottom: 20, left: 10}
   width = 960 - margin.left - margin.right
 
   x  = d3.time.scale()
@@ -38,6 +34,7 @@
     .attr("id", "timeline-d3")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + height2 + 100)
+    .attr("preserveAspectRatio", "xMidYMid")
 
   svg.append("defs").append("clipPath")
     .attr("id", "clip")
@@ -61,9 +58,9 @@
     .enter().append("rect")
     .attr("class", "aura")
     .attr("x", function (d) { return x(d.start) })
-    .attr("y", function (d, i) { return i * 20 })
+    .attr("y", function (d, i) { return i * 15 })
     .attr("width", function (d) { return x(d.end) - x(d.start) })
-    .attr("height", 15)
+    .attr("height", 10)
     .on("mouseover", function(d) {
       info = '<span class="tooltip__title">'
       if (d.job_number !== "") {
@@ -105,15 +102,16 @@
 
   context.append("g")
     .attr("class", "auras")
+    .attr("fill", "#ababab")
 
   context.select(".auras").selectAll(".aura")
     .data(auras)
     .enter().append("rect")
     .attr("class", "aura")
     .attr("x", function (d) { return x2(d.start) })
-    .attr("y", function (d, i) { return i * 7 })
+    .attr("y", function (d, i) { return i * 3 })
     .attr("width", function (d) { return x2(d.end) - x(d.start) })
-    .attr("height", 5)
+    .attr("height", 2)
 
   context.append("g")
     .attr("class", "x axis")
@@ -132,8 +130,8 @@
     x.domain(brush.empty() ? x2.domain() : brush.extent())
     focus.selectAll(".aura")
       .attr("x", function (d) { return x(d.start) })
-      .attr("y", function (d, i) { return i * 25 })
+      .attr("y", function (d, i) { return i * 15 })
       .attr("width", function (d) { return x(d.end) - x(d.start) })
-      .attr("height", 15)
+      .attr("height", 10)
     focus.select(".x.axis").call(xAxis)
   }

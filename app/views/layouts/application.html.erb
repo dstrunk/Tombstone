@@ -7,15 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if signed_in? %>
-    Signed in as: <%= current_user.email %>
-    <% if current_user.admin? %>
-      <%= link_to 'Admin Dashboard', rails_admin.dashboard_path %>
-    <% end %>
-    <%= button_to 'Sign out', sign_out_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
-  <% end %>
+  <header class="wrap">
+    <h1 id="logo">Aurasma Dashboard</h1>
+    <nav>
+      <ul>
+        <% if signed_in? %>
+          Signed in as: <%= current_user.email %>
+          <% if current_user.admin? %>
+            <%= link_to 'Admin Dashboard', rails_admin.dashboard_path %>
+          <% end %>
+          <li><%= link_to 'Sign out', sign_out_path %></li>
+        <% else %>
+          <li><%= link_to 'Sign in', sign_in_path %></li>
+          <li><%= link_to 'Sign up', sign_up_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
 
   <div id="flash">
     <% flash.each do |key, value| %>

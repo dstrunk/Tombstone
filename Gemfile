@@ -29,6 +29,10 @@ gem 'gon'
 gem 'rabl'
 # MomentJS for front-end date parsing
 gem 'momentjs-rails'
+# Bourbon and Neat for SCSS helpers
+gem 'bourbon'
+gem 'neat'
+gem 'normalize-rails'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 

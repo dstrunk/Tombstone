@@ -16,5 +16,7 @@ class Aura < ActiveRecord::Base
       field :end_date
       field :status
     end
+
+    exclude_fields :id, :created_at, :updated_at, :description
   end
 end

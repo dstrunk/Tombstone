@@ -1,5 +1,66 @@
+// general
+html, body {
+  font: 14px sans-serif;
+  color: #2e303a;
+  line-height: 1.35;
+}
+
+
+
+.wrap {
+  @include outer-container;
+}
+
+ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+// Intro
+.intro {
+  @include span-columns(12);
+  @include row();
+}
+
+.timeline {
+  @include span-columns(12);
+  @include row();
+}
+
+.counts {
+  @include row();
+}
+
+.count {
+  @include span-columns(4);
+  @include omega(3n);
+  max-height: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+// Count
+.count {
+  margin-bottom: 100px;
+}
+
+.count h2 {
+  text-transform: uppercase;
+}
+
+.count__number {
+  font-size: 90px;
+  font-weight: bold;
+}
+
+.count__text {
+  color: #a9aaac;
+}
+
+// Timeline chart
 #timeline-d3 {
   border: 1px solid #ababab;
+  margin-bottom: 50px;
 }
 
 svg {
