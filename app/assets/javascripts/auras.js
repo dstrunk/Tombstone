@@ -5,6 +5,13 @@
     aura.end   = parseDate(aura.end)
   })
 
+  filterSet = []
+  auras.forEach(function(aura) {
+    filterSet.push(aura.customer)
+  })
+
+  filter = d3.set(filterSet).values()
+
   minDate = d3.min(auras, function (d) { return d.start })
   maxDate = d3.max(auras, function (d) { return d.end })
   height = auras.length * 15 + 10
@@ -42,6 +49,32 @@
       .attr("width", width)
       .attr("height", height)
 
+  filter = d3.select("body").append("div")
+    .attr("class", "filter")
+
+  filter.append("div")
+    .attr("class", "customers")
+
+  filter.select(".customers").selectAll(".customer")
+    .data(auras, function(d) { return d.customer })
+    .enter().append("div")
+    .attr("class", function(d) { return d.customer })
+    .style("width", 10 + "px")
+    .style("height", 10 + "px")
+    .style("display", "block")
+    .style("background", "red")
+    .on("mouseover", function(d) {
+      focus.selectAll(".aura")
+        .filter(function (d) { return d; console.log(d)  })
+    })
+
+  filter.select(".customers").append("div")
+    .attr("class", "all")
+    .on("click", function() {
+      focus.selectAll(".aura")
+        .filter(function (d) { return d  })
+    });
+
   focus = svg.append("g")
     .attr("class", "focus")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -56,7 +89,7 @@
   focus.select(".auras").selectAll(".aura")
     .data(auras)
     .enter().append("rect")
-    .attr("class", "aura")
+    .attr("class", function(d) { return "aura " + d.customer })
     .attr("x", function (d) { return x(d.start) })
     .attr("y", function (d, i) { return i * 15 })
     .attr("width", function (d) { return x(d.end) - x(d.start) })
@@ -107,7 +140,7 @@
   context.select(".auras").selectAll(".aura")
     .data(auras)
     .enter().append("rect")
-    .attr("class", "aura")
+    .attr("class", function(d) { return "aura " + d.customer })
     .attr("x", function (d) { return x2(d.start) })
     .attr("y", function (d, i) { return i * 3 })
     .attr("width", function (d) { return x2(d.end) - x(d.start) })

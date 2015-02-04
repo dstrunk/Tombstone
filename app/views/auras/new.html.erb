@@ -1,0 +1,12 @@
+<%= simple_form_for @aura, url: auras_path do |f| %>
+  <%= f.input :aura_name %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :start_date, as: :datetime %>
+  <%= f.input :end_date, as: :datetime %>
+  <%= f.label :job_number %>
+  <%= f.collection_select :job_number, JobNumber.all, :id, :number, include_blank: true %>
+  <%= f.label :customer %>
+  <%= f.collection_select :customer, Customer.all, :id, :name, include_blank: true %>
+
+  <%= f.button :submit %>
+<% end %>

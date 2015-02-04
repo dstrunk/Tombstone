@@ -3,34 +3,32 @@ class AuraForm
 
   attr_accessor(
     :aura_name,
+    :description,
     :job_number,
     :customer,
-    :description
+    :start_date,
+    :end_date
   )
 
   validates :aura_name, presence: true
   validates :description, presence: true
+  validates :customer, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 
-  def submit
+  def save
     if valid?
-      create_aura
-      associate_job_number
+      @aura = Aura.create(
+        name: aura_name,
+        description: description,
+        start_date: Date.new(flatten_date_array(aura, start_date)), 
+        end_date: Date.new(flatten_date_array(aura, end_date))
+      )
+      @aura.customer.where(name: customer).first_or_create
+      @aura.job_number.where(number: job_number).first_or_create
     end
   end
 
   private
-  
-  def create_aura
-    aura = Aura.new(params[:aura_form])
-  end
 
-  def associate_job_number(aura)
-    @job_number = JobNumber.where(number: params[:job_number]).first_or_create
-    aura << job_number
-  end
-
-  def associate_customer(aura)
-    customer = Customer.where(name: params[:customer]).first_or_create
-    aura << customer
-  end
 end

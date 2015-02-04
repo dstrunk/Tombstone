@@ -16,6 +16,7 @@
           <% if current_user.admin? %>
             <%= link_to 'Admin Dashboard', rails_admin.dashboard_path %>
           <% end %>
+          <li><%= link_to 'Submit Aura request', new_aura_path %></li>
           <li><%= link_to 'Sign out', sign_out_path %></li>
         <% else %>
           <li><%= link_to 'Sign in', sign_in_path %></li>

@@ -7,13 +7,11 @@ class AurasController < ApplicationController
   end
 
   def new
-    @aura = Aura.new
+    @aura = AuraForm.new
   end
 
   def create
-    @aura = Aura.new(aura_params)
-    @aura.status = "pending"
-
+    @aura = AuraForm.new(params[:aura_form])
     if @aura.save
       redirect_to "dashboard"
       flash[:notice] = "Your request has been submitted! We'll get back to you shortly."
@@ -23,9 +21,4 @@ class AurasController < ApplicationController
     end
   end
 
-
-  private
-  def aura_params
-    params.require(:aura).permit(:name, :start_date, :end_date)
-  end
 end

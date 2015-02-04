@@ -33,6 +33,10 @@ gem 'momentjs-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'normalize-rails'
+# Simple form
+gem 'simple_form'
+# Statesman (gocardless) for states / transitions
+gem 'statesman'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
