@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129220459) do
+ActiveRecord::Schema.define(version: 20150205214717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "aura_transitions", force: true do |t|
+    t.string   "to_state",                  null: false
+    t.text     "metadata",   default: "{}"
+    t.integer  "sort_key",                  null: false
+    t.integer  "aura_id",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "aura_transitions", ["aura_id"], name: "index_aura_transitions_on_aura_id", using: :btree
+  add_index "aura_transitions", ["sort_key", "aura_id"], name: "index_aura_transitions_on_sort_key_and_aura_id", unique: true, using: :btree
 
   create_table "auras", force: true do |t|
     t.string   "name"
@@ -23,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150129220459) do
     t.integer  "job_number_id"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "status",        default: 0
     t.text     "description"
     t.integer  "customer_id"
   end

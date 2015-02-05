@@ -2,6 +2,27 @@ require 'delegate'
 
 class AuraPresenter < SimpleDelegator
 
+  def pending
+    in_state(:pending)
+  end
+
+  def live
+    in_state(:live)
+  end
+
+  def approved
+    in_state(:approved)
+  end
+
+  def denied
+    in_state(:denied)
+  end
+
+  def archived
+    in_state(:archived)
+  end
+
+
   def pending_count
     pending.count
   end
