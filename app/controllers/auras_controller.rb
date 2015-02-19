@@ -11,14 +11,21 @@ class AurasController < ApplicationController
   end
 
   def create
-    @aura = AuraForm.new(params[:aura_form])
+    @aura = AuraForm.new(aura_params)
     if @aura.save
-      redirect_to "dashboard"
+      redirect_to root_path
       flash[:notice] = "Your request has been submitted! We'll get back to you shortly."
     else
-      redirect_to "new"
+      render "new"
       flash.now[:alert] = "Something went wrong. Please try again."
     end
+  end
+
+  private
+  def aura_params
+    params.require(:aura_form).permit(:aura_name, :description, :job_number, :customer,
+                                 :start_date, :end_date, :new_job_number,
+                                 :new_customer_name)
   end
 
 end

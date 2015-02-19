@@ -3,8 +3,8 @@
     <%= simple_form_for @aura, url: auras_path do |f| %>
       <%= f.input :aura_name %>
       <%= f.input :description, as: :text %>
-      <%= f.datetime :start_date %>
-      <%= f.datetime :end_date %>
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
       <%= f.label :job_number %>
       <%= f.collection_select :job_number, JobNumber.all, :id, :number, include_blank: true %>
       or add a job number:
