@@ -12,6 +12,10 @@ class Aura < ActiveRecord::Base
   belongs_to :job_number, inverse_of: :auras
   belongs_to :customer, inverse_of: :auras
 
+  def customer_name
+    customer.name
+  end
+
 
   rails_admin do
     edit do
@@ -21,6 +25,7 @@ class Aura < ActiveRecord::Base
       field :name
       field :start_date
       field :end_date
+      field :ongoing
     end
 
     exclude_fields :id, :created_at, :updated_at, :description

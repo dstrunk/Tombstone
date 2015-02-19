@@ -1,16 +1,10 @@
+<div class="band-background">
+</div>
+
 <div class="wrap">
   <div class="intro">
-    <% if !current_user %>Sign up or sign in to begin filling out the Aura request.<% end %> Note that your request depends on the availability of remaining auras and pending auras in the queue. If your request is a rush or is for a high-profile client, please contact Jaek Amos at <a href="mailto:jamos@communicorp.com">jamos@communicorp.com</a> with any relevant information.
+    <% if !current_user %><strong>Sign up or sign in to begin filling out the Aura request.</strong><% end %> When filling out an aura request, note that your request depends on the availability of remaining auras and pending auras in the queue. If your request is a rush or is for a high-profile client, please contact Jaek Amos at <a href="mailto:jamos@communicorp.com">jamos@communicorp.com</a> with any relevant information.
   </div>
-
-<div class="timeline">
-  <div class="timeline__inner">
-    <h2>Timeline <small>All live auras with their starting and ending dates</small></h2>
-
-    <div id="timeline">
-    </div>
-  </div>
-</div>
 
 <div class="counts">
   <div class="count count--remaining">
@@ -20,7 +14,7 @@
     </div>
 
     <div class="count__text">
-      Auras remain until our 30 Aura limit is reached.
+      Auras left until our 30 Aura limit is reached.
     </div>
   </div>
 
@@ -35,20 +29,69 @@
     </div>
   </div>
 
+  <div class="count count--archived">
+    <h2>Archived auras</h2>
+    <div class="count__number">
+      <%= @auras.archived_count %>
+    </div>
+
+    <div class="count__text">
+      Auras have been archived.
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline__inner">
+      <h2>Timeline <small>All live auras with their starting and ending dates</small></h2>
+
+      <div id="timeline">
+      </div>
+    </div>
+  </div>
+
   <div class="count count--ending">
     <h2>Ending soon <small>Sorted by closest to today</small></h2>
     <% if @auras.recently_ending %>
-      <ol>
-        <% @auras.recently_ending.each do |aura| %>
-          <% if aura.end_date.past? %>
-            <li style="color: #ff1800"><%= aura.name %> - -<%= time_ago_in_words(aura.end_date) %>
-          <% else %>
-            <li style="color: #ffd200"><%= aura.name %> - <%= time_ago_in_words(aura.end_date) %></li>
-          <% end %>
+      <table>
+        <tr>
+          <th>Count</th>
+          <th>Customer</th>
+          <th>Aura</th>
+          <th>End date</th>
+        </tr>
+        <% @auras.recently_ending.each_with_index do |aura, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= aura.customer_name %></td>
+            <td><%= aura.name %></td>
+            <td><%= time_ago_in_words(aura.end_date) %></td>
+          </tr>
         <% end %>
-      </ol>
+      </table>
     <% end %>
   </div>
-</div>
 
+  <div class="count count--past-due">
+    <h2>Past due <small>Sorted by closest to today</small></h2>
+    <% if @auras.recently_ending %>
+      <table>
+        <tr>
+          <th>Count</th>
+          <th>Customer</th>
+          <th>Aura</th>
+          <th>Past due</th>
+        </tr>
+        <% @auras.past_due.each_with_index do |aura, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= aura.customer_name %></td>
+            <td><%= aura.name %></td>
+            <td><%= time_ago_in_words(aura.end_date) %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+</div>
 </div>

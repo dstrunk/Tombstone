@@ -29,8 +29,8 @@
   y = d3.scale.linear().range([height, 0])
   y2 = d3.scale.linear().range([height2, 0])
 
-  xAxis  = d3.svg.axis().scale(x).orient("bottom")
-  xAxis2 = d3.svg.axis().scale(x2).orient("bottom")
+  xAxis  = d3.svg.axis().scale(x).orient("bottom").innerTickSize(-height)
+  xAxis2 = d3.svg.axis().scale(x2).orient("bottom").innerTickSize(-height2)
 
   brush = d3.svg.brush()
     .x(x2)
@@ -95,23 +95,25 @@
     .attr("width", function (d) { return x(d.end) - x(d.start) })
     .attr("height", 10)
     .on("mouseover", function(d) {
-      info = '<span class="tooltip__title">'
+      info = '<div class="tooltip__inner"><span class="tooltip__title">'
       if (d.job_number !== "") {
-        info += "<strong>Job number: " + d.job_number + "</strong>";
+        info +=  '<span class="tooltip__job-number">' + d.job_number + '</span>';
       }
       info += '<span class="tooltip__customer">' + d.customer + '</span>';
       info += '</span>'
-      info += '<span class="tooltip__name">Name: ' + d.name + '</span>';
+      info += '<div class="tooltip__info">';
+      info += '<span class="tooltip__name"><strong>Name:</strong> ' + d.name + '</span>';
       if (d.description) {
-        info += '<span class="tooltip__desc">Description: ' + d.description + '</span>';
+        info += '<span class="tooltip__desc"><strong>Description:</strong> ' + d.description + '</span>';
       }
+      info += '</div>';
       info += '<span class="tooltip__time">';
-      info += '<span class="tooltip__time--start">' + moment(d.start).format('MMMM Do YYYY') + '</span>';
-      info += '<span class="tooltip__time--end">' + moment(d.end).format('MMMM Do YYYY') + '</span>';
-      info += '</span>';
+      info += '<span class="tooltip__time--start">' + moment(d.start).format('MMM Do YYYY') + '</span>';
+      info += '<span class="tooltip__time--end">' + moment(d.end).format('MMM Do YYYY') + '</span>';
+      info += '</span></div>';
       tip.transition()
         .duration(200)
-        .style("opacity", 0.9)
+        .style("opacity", 1)
       tip.html(info)
         .style("left", (d3.event.pageX + 20) + "px")
         .style("top", (d3.event.pageY - 5) + "px")
@@ -120,8 +122,8 @@
       tip.transition()
         .duration(200)
         .style("opacity", 0)
-        .style("left", 0)
-        .style("top", 0)
+        .style("left", 0 + width)
+        .style("top", 0 + height)
     })
 
   focus.append("g")

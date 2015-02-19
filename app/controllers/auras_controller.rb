@@ -1,6 +1,6 @@
 class AurasController < ApplicationController
   def dashboard
-    auras_to_decorate = Aura.all
+    auras_to_decorate = Aura.includes(:job_number, :customer).all
     @auras = AuraPresenter.new(auras_to_decorate)
 
     gon.rabl "app/views/auras/timeline.json.rabl", as: "auras"

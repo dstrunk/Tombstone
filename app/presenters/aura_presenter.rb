@@ -1,38 +1,16 @@
 require 'delegate'
 
 class AuraPresenter < SimpleDelegator
-
-  def pending
-    in_state(:pending)
-  end
-
-  def live
-    in_state(:live)
-  end
-
-  def approved
-    in_state(:approved)
-  end
-
-  def denied
-    in_state(:denied)
-  end
-
-  def archived
-    in_state(:archived)
-  end
-
-
   def pending_count
-    pending.count
+    in_state(:pending).count
   end
 
   def live_count
-    live.count
+    in_state(:live).count
   end
 
   def archived_count
-    archived.count
+    in_state(:archived).count
   end
 
   def remaining_count
@@ -40,8 +18,14 @@ class AuraPresenter < SimpleDelegator
   end
 
   def recently_ending
-    live
-      .where("end_date < ?", DateTime.now + 30.days)
+    in_state(:live)
+      .where("end_date < ? AND end_date >= ?", DateTime.now + 30.days, DateTime.now)
+      .order(end_date: :asc)
+  end
+
+  def past_due
+    in_state(:live)
+      .where("end_date <= ?", DateTime.now)
       .order(end_date: :asc)
   end
 

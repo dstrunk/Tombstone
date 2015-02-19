@@ -30,18 +30,39 @@ ol, li {
 }
 
 .count {
+  position: relative;
   @include span-columns(4);
   @include omega(3n);
-  max-height: 250px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  border: 1px solid #d4d4d6;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 2.25em;
+  padding: 1.25em;
+  background: white;
+}
+
+.count--remaining,
+.count--pending,
+.count--archived {
+  height: 250px;
+}
+
+.count__text {
+  position: absolute;
+  bottom: 25px;
+}
+
+.count--past-due {
+  @include span-columns(12);
+  @include omega();
+}
+
+.count--ending {
+  @include span-columns(12);
+  @include omega();
 }
 
 // Count
-.count {
-  margin-bottom: 100px;
-}
-
 .count h2 {
   text-transform: uppercase;
 }
@@ -57,8 +78,10 @@ ol, li {
 
 // Timeline chart
 #timeline-d3 {
-  border: 1px solid #ababab;
-  margin-bottom: 50px;
+  border: 1px solid #d4d4d6;
+  margin-bottom: 2.25em;
+  border-radius: 3px;
+  background: white;
 }
 
 svg {
@@ -69,6 +92,14 @@ svg {
   fill: #0076c8;
   clip-path: url(#clip);
   cursor: pointer;
+
+  &:hover {
+    fill: darken(#0076c8, 15%);
+  }
+}
+
+.tick line {
+  opacity: 0.2;
 }
 
 .axis path,
@@ -86,23 +117,49 @@ svg {
 
 .tooltip {
   position: absolute;
-  font: 10px sans-serif;
-  background: #005593;
-  color: white;
-  padding: 10px;
+  font: sans-serif;
+  background: #e5e5e5;
+  color: #2e303a;
+  width: 300px;
   border-radius: 3px;
   box-shadow: 0 0 8px #7a7a7a;
+  overflow: hidden;
 }
 
-.tooltip__title strong {
-  padding-right: 15px;
+.tooltip__title,
+.tooltip__name,
+.tooltip__desc,
+.tooltip__time {
+  padding: 10px;
 }
 
 .tooltip__title {
   display: block;
+  background: #0076c8;
+  color: white;
+  font-weight: 700;
   padding-bottom: 5px;
-  border-bottom: 1px solid darken(#005593, 10%);
   margin-bottom: 5px;
+  @include clearfix;
+}
+
+.tooltip__job-number,
+.tooltip__customer {
+  display: block;
+}
+
+.tooltip__job-number {
+  float: left;
+}
+
+.tooltip__customer {
+  float: right;
+}
+
+.tooltip__info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c3c3c3;
 }
 
 .tooltip__name {
@@ -111,4 +168,39 @@ svg {
 
 .tooltip__desc {
   display: block;
+}
+
+.tooltip__time {
+  display: block;
+  border-top: 1px solid white;
+  @include clearfix;
+}
+
+.tooltip__time--start,
+.tooltip__time--end {
+  display: block;
+  color: #9f9f9f;
+}
+
+.tooltip__time--start {
+  float: left;
+}
+
+.tooltip__time--end {
+  float: right;
+}
+
+fieldset {
+  @include span-columns(6);
+  @include shift(3);
+  @include omega();
+  @include row();
+  margin-top: 5em;
+  margin-bottom: 5em;
+  border-radius: 3px;
+  background: white;
+
+  .datetime {
+    display: inline-block;
+  }
 }

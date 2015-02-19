@@ -33,6 +33,8 @@ gem 'momentjs-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'normalize-rails'
+gem 'bitters'
+
 # Simple form
 gem 'simple_form'
 # Statesman (gocardless) for states / transitions

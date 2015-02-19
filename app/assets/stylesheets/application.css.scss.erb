@@ -1,0 +1,77 @@
+@import 'normalize-rails';
+@import 'bourbon';
+@import 'neat';
+@import 'base/base';
+@import 'auras';
+
+$base-color: #0076c8;
+
+body {
+  background: #f5f5f5;
+}
+
+header {
+  background: $base-color;
+  padding: 25px 0;
+  @include row();
+}
+
+#logo {
+  display: block;
+  width: 200px;
+  height: 22px;
+  background: url("<%= asset_path 'tombstone-logo.png' %>");
+  text-indent: -9999px;
+  float: left;
+}
+
+header nav {
+  float: right;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+  }
+}
+
+header nav ul li {
+  display: inline-block;
+  padding-right: 10px;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.button-primary {
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  padding: 8px 12px;
+
+  &:hover {
+    background: white;
+    color: $base-color;
+  }
+}
+
+.band-background {
+  background: url('<%= asset_path 'ccorp-band.png' %>');
+  background-repeat: no-repeat;
+}
+
+.intro {
+  font-size: 1.25em;
+  margin: 2.25em 0;
+}
+
+footer {
+  background: $base-color;
+  color: white;
+  padding: 5em 0;
+  @include row();
+}

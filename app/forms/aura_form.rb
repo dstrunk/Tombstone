@@ -7,7 +7,9 @@ class AuraForm
     :job_number,
     :customer,
     :start_date,
-    :end_date
+    :end_date,
+    :new_job_number,
+    :new_customer_name
   )
 
   validates :aura_name, presence: true

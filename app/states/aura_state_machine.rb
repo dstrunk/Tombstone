@@ -1,18 +1,15 @@
 class AuraStateMachine
   include Statesman::Machine
 
-  state :pending, initial: true
-  state :approved
-  state :denied
+  state :unstarted, initial: true
+  state :rejected
+  state :accepted
   state :live
   state :archived
 
-  transaction from :pending,  to: [:approved, :denied]
-  transaction from :approved, to: [:live]
-  transaction from :denied,   to: [:archived]
-  transaction from :live,     to: [:archived]
-
-  before_transition(:pending) do |aura|
-  end
+  transition from: :unstarted, to: [:accepted, :rejected]
+  transition from: :accepted,  to: :live
+  transition from: :rejected,  to: :archived
+  transition from: :live,      to: :archived
 
 end

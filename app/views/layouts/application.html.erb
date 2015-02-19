@@ -7,23 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header class="wrap">
-    <h1 id="logo">Aurasma Dashboard</h1>
-    <nav>
-      <ul>
-        <% if signed_in? %>
-          Signed in as: <%= current_user.email %>
-          <% if current_user.admin? %>
-            <%= link_to 'Admin Dashboard', rails_admin.dashboard_path %>
+  <header id="page-header">
+    <div class="wrap">
+      <%= link_to root_path do %>
+        <h1 id="logo">Aurasma Dashboard</h1>
+      <% end %>
+      <nav>
+        <ul>
+          <% if signed_in? %>
+            <% if current_user.admin? %>
+              <li><%= link_to 'Admin Dashboard', rails_admin.dashboard_path %></li>
+            <% end %>
+            <li><%= link_to 'Submit Aura request', new_aura_path %></li>
+            <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign in', sign_in_path %></li>
+            <li><%= link_to 'Sign up', sign_up_path, class: "button-primary" %></li>
           <% end %>
-          <li><%= link_to 'Submit Aura request', new_aura_path %></li>
-          <li><%= link_to 'Sign out', sign_out_path %></li>
-        <% else %>
-          <li><%= link_to 'Sign in', sign_in_path %></li>
-          <li><%= link_to 'Sign up', sign_up_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <div id="flash">
@@ -32,6 +35,12 @@
     <% end %>
   </div>
 <%= yield %>
+
+  <footer>
+    <div class="wrap">
+      <strong>Created for internal use by Communicorp, Inc.</strong>
+    </div>
+  </footer>
 
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "application", params[:controller] %>
