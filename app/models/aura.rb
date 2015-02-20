@@ -16,30 +16,6 @@ class Aura < ActiveRecord::Base
     customer.name
   end
 
-  rails_admin do
-    list do
-      field :name
-      field :description
-      field :job_number
-      field :customer
-      field :start_date
-      field :end_date
-      field :ongoing
-    end
- 
-    edit do
-      field :job_number, :belongs_to_association
-      field :customer, :belongs_to_association
-      field :description
-      field :name
-      field :start_date
-      field :end_date
-      field :ongoing
-    end
-
-    exclude_fields :id, :created_at, :updated_at
-  end
-
   private
 
   def self.transition_class

@@ -1,0 +1,5 @@
+<h4>Approve <%= @object.name %></h4>
+
+<%= form_tag url: approve_review_path(model_name: @abstract_model.to_param, object: @object), method: post do |f| %>
+  <%= f.button 'Submit'>
+<% end %>
