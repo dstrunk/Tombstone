@@ -4,7 +4,7 @@ class AuraPresenter < SimpleDelegator
   COUNT_LIMIT = 30
 
   def pending_count
-    in_state(:pending).count
+    in_state(:unstarted).count
   end
 
   def live_count

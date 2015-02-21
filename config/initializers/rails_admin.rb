@@ -1,4 +1,6 @@
-require Rails.root.join('lib/rails_admin_aura_review')
+require Rails.root.join('lib/rails_admin_accept_review')
+require Rails.root.join('lib/rails_admin_reject_review')
+require Rails.root.join('lib/rails_admin_archive_review')
 
 RailsAdmin.config do |config|
   config.authorize_with do
@@ -30,7 +32,9 @@ RailsAdmin.config do |config|
     # member actions
     show
     edit
-    approve_review
+    accept_review
+    reject_review
+    archive_review
   end
 
   config.excluded_models = ["AuraTransition"]

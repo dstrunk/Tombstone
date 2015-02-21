@@ -22,6 +22,26 @@ class Aura < ActiveRecord::Base
   scope :live,      -> { self.in_state(:live)      }
   scope :archived,  -> { self.in_state(:archived)  }
 
+  def unstarted
+    state_machine.current_state == "unstarted"
+  end
+
+  def rejected
+    state_machine.current_state == "rejected"
+  end
+
+  def accepted
+    state_machine.current_state == "accepted"
+  end
+
+  def live
+    state_machine.current_state == "live"
+  end
+
+  def archived
+    state_machine.current_state == "archived"
+  end
+
   private
 
   def self.transition_class
@@ -29,6 +49,6 @@ class Aura < ActiveRecord::Base
   end
 
   def self.initial_state
-    :pending
+    :unstarted
   end
 end
