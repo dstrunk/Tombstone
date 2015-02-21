@@ -19,7 +19,18 @@ RailsAdmin.config do |config|
   config.yell_for_non_accessible_fields = false
 
   config.actions do
-    init_actions!
+    # root actions
+    dashboard  # mandatory
+    
+    # collection actions
+    index      # mandatory
+    new
+    export
+
+    # member actions
+    show
+    edit
+    approve_review
   end
 
   config.excluded_models = ["AuraTransition"]
@@ -33,6 +44,7 @@ RailsAdmin.config do |config|
       field :start_date
       field :end_date
       field :ongoing
+      scopes [:all, :unstarted, :rejected, :accepted, :live, :archived]
     end
 
     edit do

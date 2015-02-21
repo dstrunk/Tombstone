@@ -122,8 +122,8 @@
       tip.transition()
         .duration(200)
         .style("opacity", 0)
-        .style("left", 0 + width)
-        .style("top", 0 + height)
+        .style("left", 0)
+        .style("top", 0)
     })
 
   focus.append("g")

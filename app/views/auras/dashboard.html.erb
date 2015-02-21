@@ -49,9 +49,9 @@
     </div>
   </div>
 
+  <% if @auras.recently_ending? %>
   <div class="count count--ending">
     <h2>Ending soon <small>Sorted by closest to today</small></h2>
-    <% if @auras.recently_ending %>
       <table>
         <tr>
           <th>Count</th>
@@ -68,12 +68,12 @@
           </tr>
         <% end %>
       </table>
-    <% end %>
   </div>
+  <% end %>
 
+  <% if @auras.past_due? %>
   <div class="count count--past-due">
     <h2>Past due <small>Sorted by closest to today</small></h2>
-    <% if @auras.recently_ending %>
       <table>
         <tr>
           <th>Count</th>
@@ -90,8 +90,8 @@
           </tr>
         <% end %>
       </table>
-    <% end %>
   </div>
+  <% end %>
 
 </div>
 </div>

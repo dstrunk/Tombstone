@@ -16,6 +16,12 @@ class Aura < ActiveRecord::Base
     customer.name
   end
 
+  scope :unstarted, -> { self.in_state(:unstarted) }
+  scope :rejected,  -> { self.in_state(:rejected)  }
+  scope :accepted,  -> { self.in_state(:accepted)  }
+  scope :live,      -> { self.in_state(:live)      }
+  scope :archived,  -> { self.in_state(:archived)  }
+
   private
 
   def self.transition_class
