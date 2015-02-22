@@ -1,5 +1,5 @@
 class AurasController < ApplicationController
-  before_action :require_login
+  before_action :require_login, only: :new
 
   def dashboard
     auras_to_decorate = Aura.includes(:job_number, :customer).all
