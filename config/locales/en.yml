@@ -20,4 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    actions:
+      accept_review:
+        menu: 'Accept aura'
+        title: 'Accept aura'
+        breadcrumb: 'Accept'
+      reject_review:
+        menu: 'Reject aura'
+        title: 'Reject aura'
+        breadcrumb: 'Reject'
+      archive_review:
+        menu: 'Archive aura'
+        title: 'Archive aura'
+        breadcrumb: 'Archive'
+      release_live:
+        menu: 'Release aura'
+        title: 'Release aura'
+        breadcrumb: 'Release'
