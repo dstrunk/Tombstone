@@ -47,6 +47,7 @@ RailsAdmin.config do |config|
       field :description
       field :job_number
       field :customer
+      field :user
       field :start_date
       field :end_date
       field :ongoing
@@ -56,6 +57,7 @@ RailsAdmin.config do |config|
     edit do
       field :job_number, :belongs_to_association
       field :customer, :belongs_to_association
+      field :user, :belongs_to_association
       field :description
       field :name
       field :start_date
@@ -78,6 +80,7 @@ RailsAdmin.config do |config|
       field :admin
       field :created_at
       field :updated_at
+      field :auras, :has_many_association
     end
 
     edit do

@@ -3,6 +3,7 @@ class Aura < ActiveRecord::Base
   has_many :aura_transitions
   belongs_to :job_number, inverse_of: :auras
   belongs_to :customer, inverse_of: :auras
+  belongs_to :user, inverse_of: :auras
 
   validates_presence_of :name, :start_date, :end_date
   validates_uniqueness_of :name

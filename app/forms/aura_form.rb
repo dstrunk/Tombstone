@@ -9,7 +9,8 @@ class AuraForm
     :start_date,
     :end_date,
     :new_job_number,
-    :new_customer_name
+    :new_customer_name,
+    :user_id
   )
 
   validates :aura_name, presence: true
@@ -35,6 +36,8 @@ class AuraForm
       start_date: Date.parse("#{start_date}"),
       end_date: Date.parse("#{end_date}")
     )
+    current_user = User.find("#{user_id}")
+    current_user.auras << @aura
   end
 
   def create_or_add_customer

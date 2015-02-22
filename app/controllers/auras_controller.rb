@@ -25,7 +25,7 @@ class AurasController < ApplicationController
   def aura_params
     params.require(:aura_form).permit(:aura_name, :description, :job_number, :customer,
                                  :start_date, :end_date, :new_job_number,
-                                 :new_customer_name)
+                                 :new_customer_name).merge(user_id: current_user.id)
   end
 
 end

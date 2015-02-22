@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213203605) do
+ActiveRecord::Schema.define(version: 20150222181102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 20150213203605) do
     t.text     "description"
     t.integer  "customer_id"
     t.boolean  "ongoing",       default: false
+    t.integer  "user_id"
   end
 
   add_index "auras", ["job_number_id"], name: "index_auras_on_job_number_id", using: :btree
+  add_index "auras", ["user_id"], name: "index_auras_on_user_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "name"
