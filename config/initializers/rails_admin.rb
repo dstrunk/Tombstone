@@ -4,10 +4,9 @@ require Rails.root.join('lib/rails_admin_archive_review')
 require Rails.root.join('lib/rails_admin_release_live')
 
 RailsAdmin.config do |config|
-  config.authorize_with do
+  config.authenticate_with do
     unless current_user
-      session[:return_to] = request.url
-      redirect_to "/sign_in", alert: "You must log in or sign up befor accessing this page."
+      redirect_to "/sign_in", alert: "You must log in or sign up before accessing this page."
     end
   end
 
