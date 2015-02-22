@@ -24,11 +24,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            # @objects = list_entries(@model_config, :destroy)
-
-            # @objects.each do |object|
-            #   object.update_attribute(:approved, true)
-            # end
+            @object.state_machine.transition_to!(:archived)
 
             flash[:success] = "You have archived aura #{@object.name}."
             
