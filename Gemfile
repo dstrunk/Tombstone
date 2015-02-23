@@ -47,7 +47,7 @@ gem 'spring',        group: :development
 
 # Deploy to dokku
 gem 'rails_12factor'
-gem 'unicorn'
+gem 'thin', "~> 1.6.1"
 # Rails 4.2 updates
 gem 'web-console', '~> 2.0'
 
