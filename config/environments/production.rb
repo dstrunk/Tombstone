@@ -78,4 +78,20 @@ Rails.application.configure do
 
   # Don't supress errors in after_rollback and after_commit callbacks
   config.active_record.raise_in_transactional_callbacks = true
+
+  # Mail settings
+  config.action_mailer.default_url_options = { host: 'communicorp.com' }
+  # ActionMailer config
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = fasle
+  config.action_mailer.default charset: "utf-8"
+  # Mandrill settings
+  config.action_mailer.smtp_settings = {
+    address: "smtp.mandrillapp.com",
+    port: 25,
+    user_name: ENV["MANDRILL_USERNAME"],
+    password: ENV["MANDRILL_PASSWORD"]
+  }
 end
