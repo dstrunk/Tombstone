@@ -6,25 +6,30 @@ FactoryGirl.define do
     ongoing false
     job_number 
     customer
-
-    trait :unstarted do
-      to_state "unstarted"
-    end
+    user
 
     trait :rejected do
-      to_state "rejected"
+      after(:create) do |aura|
+        FactoryGirl.create(:aura_transition, :rejected, aura: aura)
+      end
     end
 
     trait :accepted do
-      to_state "accepted"
+      after(:create) do |aura|
+        FactoryGirl.create(:aura_transition, :accepted, aura: aura)
+      end
     end
 
     trait :live do
-      to_state "live"
+      after(:create) do |aura|
+        FactoryGirl.create(:aura_transition, :live, aura: aura)
+      end
     end
 
     trait :archived do
-      to_state "archived"
+      after(:create) do |aura|
+        FactoryGirl.create(:aura_transition, :archived, aura: aura)
+      end
     end
   end
 end

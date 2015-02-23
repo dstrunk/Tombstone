@@ -12,6 +12,9 @@ class Aura < ActiveRecord::Base
     @state_machine ||= AuraStateMachine.new(self, transition_class: AuraTransition)
   end
 
+  delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
+    to: :state_machine
+
   def customer_name
     customer.name
   end
