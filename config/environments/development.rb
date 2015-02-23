@@ -34,4 +34,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Don't supress errors in after_rollback and after_commit callbacks
+  config.active_record.raise_in_transactional_callbacks = true
+  config.serve_static_files = true
 end

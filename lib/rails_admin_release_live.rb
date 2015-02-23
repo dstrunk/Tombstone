@@ -22,7 +22,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @object.state_machine.transition_to!(:live)
+            @object.state_machine.transition_to(:live)
 
             flash[:success] = "#{@object.name} is now live."
             

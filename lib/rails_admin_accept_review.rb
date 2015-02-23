@@ -22,7 +22,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @object.state_machine.transition_to!(:accepted)
+            @object.state_machine.transition_to(:accepted)
             flash[:success] = "You have accepted aura #{@object.name}."
             
             redirect_to back_or_index

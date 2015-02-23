@@ -22,7 +22,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @object.state_machine.transition_to!(:rejected)
+            @object.state_machine.transition_to(:rejected)
 
             flash[:success] = "You have rejected aura #{@object.name}."
             

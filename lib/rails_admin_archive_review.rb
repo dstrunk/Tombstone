@@ -24,7 +24,8 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @object.state_machine.transition_to!(:archived)
+            puts @object
+            @object.state_machine.transition_to(:archived)
 
             flash[:success] = "You have archived aura #{@object.name}."
             

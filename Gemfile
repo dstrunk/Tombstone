@@ -44,6 +44,8 @@ gem 'spring',        group: :development
 
 # Deploy to dokku
 gem 'rails_12factor'
+# Rails 4.2 updates
+gem 'web-console', '~> 2.0'
 
 group :development, :test do
   gem 'factory_girl_rails'
