@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>Tombstone</title>
-  <%= include_gon %>
+  <%= include_gon if defined? gon && gon.present? %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
   <header id="page-header">
     <div class="wrap">
       <%= link_to root_path do %>
@@ -43,6 +43,5 @@
   </footer>
 
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "application", params[:controller] %>
 </body>
 </html>

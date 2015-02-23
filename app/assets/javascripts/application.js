@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require d3
 //= require moment
+//= require timeline
+//= require_tree .

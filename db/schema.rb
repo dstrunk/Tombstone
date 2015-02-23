@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20150222181102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "aura_transitions", force: true do |t|
-    t.string   "to_state",                  null: false
-    t.text     "metadata",   default: "{}"
-    t.integer  "sort_key",                  null: false
-    t.integer  "aura_id",                   null: false
+  create_table "aura_transitions", force: :cascade do |t|
+    t.string   "to_state",   limit: 255,                null: false
+    t.text     "metadata",               default: "{}"
+    t.integer  "sort_key",                              null: false
+    t.integer  "aura_id",                               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20150222181102) do
   add_index "aura_transitions", ["aura_id"], name: "index_aura_transitions_on_aura_id", using: :btree
   add_index "aura_transitions", ["sort_key", "aura_id"], name: "index_aura_transitions_on_sort_key_and_aura_id", unique: true, using: :btree
 
-  create_table "auras", force: true do |t|
-    t.string   "name"
+  create_table "auras", force: :cascade do |t|
+    t.string   "name",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "job_number_id"
@@ -37,30 +37,30 @@ ActiveRecord::Schema.define(version: 20150222181102) do
     t.datetime "end_date"
     t.text     "description"
     t.integer  "customer_id"
-    t.boolean  "ongoing",       default: false
+    t.boolean  "ongoing",                   default: false
     t.integer  "user_id"
   end
 
   add_index "auras", ["job_number_id"], name: "index_auras_on_job_number_id", using: :btree
   add_index "auras", ["user_id"], name: "index_auras_on_user_id", using: :btree
 
-  create_table "customers", force: true do |t|
-    t.string   "name"
+  create_table "customers", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "job_numbers", force: true do |t|
+  create_table "job_numbers", force: :cascade do |t|
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.boolean  "admin",                          default: false, null: false
-    t.string   "email",                                          null: false
+    t.string   "email",              limit: 255,                 null: false
     t.string   "encrypted_password", limit: 128,                 null: false
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128,                 null: false

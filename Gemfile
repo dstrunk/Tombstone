@@ -13,6 +13,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# Jquery UI for better forms
+gem 'jquery-ui-rails'
+gem 'jquery-ui-bootstrap-rails'
 # Clearance for authentication
 gem 'clearance'
 # Rails Admin for administration
