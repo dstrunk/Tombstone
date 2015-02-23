@@ -1,8 +1,24 @@
   auras = gon.auras
   parseDate = d3.time.format("%Y-%m-%d").parse
+  
+  // set ongoing auras to today's date
+  today = new Date();
+  dd = today.getDate();
+  mm = today.getMonth() + 1;
+  yyyy = today.getFullYear();
+
+  if (dd < 10) { dd = '0' + dd }
+  if (mm < 10) { mm = '0' + mm }
+
+  today = yyyy + '-' + mm + '-' + dd;
+
   auras.forEach(function(aura) {
     aura.start = parseDate(aura.start)
     aura.end   = parseDate(aura.end)
+
+    if (aura.ongoing == true) {
+      aura.end = parseDate(today)
+    }
   })
 
   filterSet = []
@@ -48,32 +64,6 @@
     .append("rect")
       .attr("width", width)
       .attr("height", height)
-
-  filter = d3.select("body").append("div")
-    .attr("class", "filter")
-
-  filter.append("div")
-    .attr("class", "customers")
-
-  filter.select(".customers").selectAll(".customer")
-    .data(auras, function(d) { return d.customer })
-    .enter().append("div")
-    .attr("class", function(d) { return d.customer })
-    .style("width", 10 + "px")
-    .style("height", 10 + "px")
-    .style("display", "block")
-    .style("background", "red")
-    .on("mouseover", function(d) {
-      focus.selectAll(".aura")
-        .filter(function (d) { return d; console.log(d)  })
-    })
-
-  filter.select(".customers").append("div")
-    .attr("class", "all")
-    .on("click", function() {
-      focus.selectAll(".aura")
-        .filter(function (d) { return d  })
-    });
 
   focus = svg.append("g")
     .attr("class", "focus")
