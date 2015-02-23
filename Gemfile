@@ -21,7 +21,7 @@ gem 'clearance'
 # Rails Admin for administration
 gem 'rails_admin'
 # ActiveModel Serializers for JSON output
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9.0'
 # CanCanCan for authorization
 gem 'cancancan'
 # D3
