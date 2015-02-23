@@ -34,8 +34,8 @@ class AuraForm
     @aura = Aura.create(
       name: "#{aura_name}",
       description: "#{description}",
-      start_date: Date.parse("#{start_date}"),
-      end_date: Date.parse("#{end_date}")
+      start_date: Date.strptime("#{start_date}", "%m-%d-%Y"),
+      end_date: Date.strptime("#{end_date}", "%m-%d-%Y")
     )
     current_user = User.find("#{user_id}")
     current_user.auras << @aura
