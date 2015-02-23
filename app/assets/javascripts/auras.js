@@ -2,24 +2,19 @@
   parseDate = d3.time.format("%Y-%m-%d").parse
   
   // set ongoing auras to today's date
-  today = new Date();
-  dd = today.getDate();
-  mm = today.getMonth() + 1;
-  yyyy = today.getFullYear();
-
-  if (dd < 10) { dd = '0' + dd }
-  if (mm < 10) { mm = '0' + mm }
-
-  today = yyyy + '-' + mm + '-' + dd;
-
   auras.forEach(function(aura) {
     aura.start = parseDate(aura.start)
     aura.end   = parseDate(aura.end)
 
+  });
+
+  lastDate = d3.max(auras, function(d) { return d.end });
+
+  auras.forEach(function(aura) {
     if (aura.ongoing == true) {
-      aura.end = parseDate(today)
+      aura.end = lastDate;
     }
-  })
+  });
 
   filterSet = []
   auras.forEach(function(aura) {
