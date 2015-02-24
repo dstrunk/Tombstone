@@ -46,7 +46,7 @@ gem 'statesman'
 gem 'spring',        group: :development
 
 # Deploy to dokku
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'thin', "~> 1.6.1"
 gem 'yaml_db'
 # Rails 4.2 updates
