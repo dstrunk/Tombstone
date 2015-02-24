@@ -16,11 +16,19 @@ class Aura < ActiveRecord::Base
     to: :state_machine
 
   def customer_name
-    customer.name
+    if customer.nil?
+      "Communicorp"
+    else
+      customer.name
+    end
   end
 
   def job_num
-    job.number
+    if job_number.nil?
+      "123456"
+    else
+      job_number.number
+    end
   end
 
   scope :unstarted, -> { self.in_state(:unstarted) }
