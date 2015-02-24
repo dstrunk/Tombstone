@@ -4,7 +4,7 @@
 <ul style="margin: 20px 0;">
   <li><b>Aura name:</b> <%= @aura.name %></li>
   <% if !@aura.job_number.nil? %>
-    <li><b>Job number:</b> <%= @aura.job_number.number unless aura.job_number.nil? %></li>
+    <li><b>Job number:</b> <%= @aura.job_number.number %></li>
   <% end %>
   <% if !@aura.customer.nil? %>
     <li><b>Customer:</b> <%= @aura.customer_name %></li>
