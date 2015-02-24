@@ -25,7 +25,7 @@ class Aura < ActiveRecord::Base
 
   def job_num
     if job_number.nil?
-      "123456"
+      "no job number"
     else
       job_number.number
     end
