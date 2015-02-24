@@ -2,7 +2,7 @@ class AuraMailer < ActionMailer::Base
   @admin_array = []
   admins = User.where(admin: true).each { |u| @admin_array.push(u.email) }
 
-  default from: "auras@communicorp.com", return_path: admin_array
+  default from: "auras@communicorp.com", return_path: @admin_array
 
   def aura_submitted(user, aura)
     @user = user
