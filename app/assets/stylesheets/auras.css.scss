@@ -124,6 +124,7 @@ svg {
   border-radius: 3px;
   box-shadow: 0 0 8px #7a7a7a;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .tooltip__title,
