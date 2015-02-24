@@ -10,34 +10,34 @@ class AuraMailer < ActionMailer::Base
     @user = user
     @aura = aura
     attachments.inline['tombstone-email-logo.gif'] = File.read("#{Rails.root}/app/assets/images/tombstone-email-logo.gif")
-    mail(to: @user.email, subject: "Your aura request has been submitted")
+    mail(to: @user.email, subject: "Your aura request has been submitted - Job #{@aura.job_num}")
   end
 
   def aura_approved(user, aura)
     @user = user
     @aura = aura
     attachments.inline['tombstone-email-logo.gif'] = File.read("#{Rails.root}/app/assets/images/tombstone-email-logo.gif")
-    mail(to: @user.email, subject: "Your aura request has been approved")
+    mail(to: @user.email, subject: "Your aura request has been approved - Job #{@aura.job_num}")
   end
 
   def aura_rejected(user, aura)
     @user = user
     @aura = aura
     attachments.inline['tombstone-email-logo.gif'] = File.read("#{Rails.root}/app/assets/images/tombstone-email-logo.gif")
-    mail(to: @user.email, subject: "Your aura request was rejected")
+    mail(to: @user.email, subject: "Your aura request was rejected - Job #{@aura.job_num}")
   end
 
   def aura_live(user, aura)
     @user = user
     @aura = aura
     attachments.inline['tombstone-email-logo.gif'] = File.read("#{Rails.root}/app/assets/images/tombstone-email-logo.gif")
-    mail(to: @user.email, subject: "Your aura request was just released!")
+    mail(to: @user.email, subject: "Your aura request was just released! - Job #{@aura.job_num}")
   end
 
   def aura_archived(user, aura)
     @user = user
     @aura = aura
     attachments.inline['tombstone-email-logo.gif'] = File.read("#{Rails.root}/app/assets/images/tombstone-email-logo.gif")
-    mail(to: @user.email, subject: "Your aura has been archived")
+    mail(to: @user.email, subject: "Your aura has been archived - Job #{@aura.job_num}")
   end
 end

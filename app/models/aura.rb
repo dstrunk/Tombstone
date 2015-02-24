@@ -19,6 +19,10 @@ class Aura < ActiveRecord::Base
     customer.name
   end
 
+  def job_num
+    job.number
+  end
+
   scope :unstarted, -> { self.in_state(:unstarted) }
   scope :rejected,  -> { self.in_state(:rejected)  }
   scope :accepted,  -> { self.in_state(:accepted)  }
