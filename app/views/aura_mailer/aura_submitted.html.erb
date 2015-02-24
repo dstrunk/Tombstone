@@ -48,8 +48,8 @@
             <li><b>Job number:</b> <%= @aura.job_num %></li>
             <li><b>Customer:</b> <%= @aura.customer_name %></li>
             <li><b>Aura description:</b> <%= @aura.description %></li>
-            <li><b>Aura start date:</b> <%= @aura.start_date %></li>
-            <li><b>Aura end date:</b> <%= @aura.end_date %></li>
+            <li><b>Aura start date:</b> <%= Date.strftime(@aura.start_date, '%d %b %Y') %></li>
+            <li><b>Aura end date:</b> <%= Date.strftime(@aura.end_date, '%d %b %Y') %></li>
           </ul>
           <p style="margin: 20px 0;">
           Marketing Technology has been notified and will review your request shortly. Once they have reviewed the request, you will receive another email updating you on the status of your aura. This is usually pretty quick, but could take up to two business days. If your request needs to be expedited, please contact <a href="mailto:mktech@communicorp.com" style="color:2388e0">Marketing Technology</a> with any relevant information for your request.
@@ -72,7 +72,7 @@
                     <tr>
                       <td valign="middle" width="30" style="color:#272727">&nbsp;</td>
                       <td width="50" height="40" valign="middle" align="left" style="color:#272727">
-                          <%= link_to(image_tag("tombstone-email-logo.gif"), root_path) %>
+                          <%= link_to(image_tag(attachments["tombstone-email-logo.gif"].url), root_path) %>
                       </td>
                       <td style="color:#272727">
                         <b>Tombstone</b>
