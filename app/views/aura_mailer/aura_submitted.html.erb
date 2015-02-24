@@ -3,8 +3,12 @@
 <p style="margin: 20px 0;">It looks like you have submitted an aura request. Here are the details of your request:</p>
 <ul style="margin: 20px 0;">
   <li><b>Aura name:</b> <%= @aura.name %></li>
-  <li><b>Job number:</b> <%= @aura.job_num %></li>
-  <li><b>Customer:</b> <%= @aura.customer_name %></li>
+  <% if !@aura.job_number.nil? %>
+    <li><b>Job number:</b> <%= @aura.job_number.number unless aura.job_number.nil? %></li>
+  <% end %>
+  <% if !@aura.customer.nil? %>
+    <li><b>Customer:</b> <%= @aura.customer_name %></li>
+  <% end %>
   <li><b>Aura description:</b> <%= @aura.description %></li>
   <li><b>Aura start date:</b> <%= @aura.start_date.strftime('%d %b %Y') %></li>
   <li><b>Aura end date:</b> <%= @aura.end_date.strftime('%d %b %Y') %></li>
