@@ -7,10 +7,15 @@ class AuraStateMachine
   state :live
   state :archived
 
+  # Happy flow - this is the normal path
   transition from: :unstarted, to: [:accepted, :rejected]
   transition from: :accepted,  to: :live
   transition from: :rejected,  to: :archived
   transition from: :live,      to: :archived
+
+  # State disrupted - something's gone wrong, override requests, etc.
+  transition from: :archived,  to: :live
+  transition from: :rejected,  to: :accepted
 
   after_transition(to: :accepted) do |aura|
     AuraMailer.aura_approved(aura.user, aura).deliver_later
