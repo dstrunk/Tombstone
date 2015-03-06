@@ -1,5 +1,5 @@
 class AurasController < ApplicationController
-  before_action :require_login, only: :new
+  before_action :require_login, only: [:new, :create]
 
   def dashboard
     auras_to_decorate = Aura.includes(:job_number, :customer).all
@@ -18,8 +18,8 @@ class AurasController < ApplicationController
       redirect_to root_path
       flash[:notice] = "Your request has been submitted! We'll get back to you shortly."
     else
-      render "new"
-      flash.now[:alert] = "Something went wrong. Please try again."
+      render :new
+      flash.now[:notice] = "Something went wrong. Please try again."
     end
   end
 

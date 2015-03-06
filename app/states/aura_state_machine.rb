@@ -27,6 +27,7 @@ class AuraStateMachine
 
   after_transition(to: :live) do |aura|
     AuraMailer.aura_live(aura.user, aura).deliver_later
+    AuraMailer.aura_ending_soon(aura.user, aura).deliver_later!(wait_until: aura.end_date - 1.day)
   end
 
   after_transition(to: :archived) do |aura|

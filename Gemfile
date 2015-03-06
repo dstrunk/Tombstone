@@ -52,6 +52,12 @@ gem 'yaml_db'
 # Rails 4.2 updates
 gem 'web-console', '~> 2.0'
 
+# Paperclip for eventual file uploads
+gem 'paperclip'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'

@@ -18,6 +18,19 @@ class AuraForm
   validates :start_date, presence: true
   validates :end_date, presence: true
 
+  validates :job_number,
+    presence: true,
+    if: Proc.new { |f| f.new_job_number.blank? }
+
+  validates :customer,
+    presence: true,
+    if: Proc.new { |f| f.new_customer_name.blank? }
+
+  validates_format_of :new_job_number, 
+    with: /\A\d{5,7}\z/, 
+    message: "Your job number should be 6 characters",
+    if: Proc.new { |f| f.job_number.blank? }
+
   def save
     if valid?
       create_aura

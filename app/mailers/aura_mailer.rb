@@ -51,4 +51,14 @@ class AuraMailer < ActionMailer::Base
          subject: "Your aura has been archived - #{@aura.job_num}"
     )
   end
+
+  def aura_ending_soon(user, aura)
+    @user = user
+    @aura = aura
+    attachments.inline['tombstone-email-logo.gif'] = File.read("#{Rails.root}/app/assets/images/tombstone-email-logo.gif")
+    headers['X-MC-PreserveRecipients'] = 'true'
+    mail(to: @user.email,
+         subject: "Your aura is expiring soon! - #{@aura.job_num}"
+    )
+  end
 end
