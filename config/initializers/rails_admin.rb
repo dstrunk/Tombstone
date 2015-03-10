@@ -2,6 +2,7 @@ require Rails.root.join('lib/rails_admin_accept_review')
 require Rails.root.join('lib/rails_admin_reject_review')
 require Rails.root.join('lib/rails_admin_archive_review')
 require Rails.root.join('lib/rails_admin_release_live')
+require Rails.root.join('lib/rails_admin_archive_to_live')
 
 RailsAdmin.config do |config|
   config.authenticate_with do
@@ -36,6 +37,7 @@ RailsAdmin.config do |config|
     reject_review
     archive_review
     release_live
+    archive_to_live
   end
 
   config.excluded_models = ["AuraTransition"]
