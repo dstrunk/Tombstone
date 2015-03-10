@@ -47,4 +47,17 @@ RSpec.describe Aura, :type => :model do
       expect { rejected_aura.transition_to!(:archived) }.to_not raise_error
     end
   end
+
+  describe 'disrupted states' do
+    let(:archived_aura) { FactoryGirl.create(:aura, :archived) }
+    let(:rejected_aura) { FactoryGirl.create(:aura, :rejected) }
+
+    it 'can transition from archive to live if necessary' do
+      expect { archived_aura.transition_to!(:live) }.to_not raise_error
+    end
+
+    it 'can transition from rejected to accepted if necessary' do
+      expect { rejected_aura.transition_to!(:accepted) }.to_not raise_error
+    end
+  end
 end
