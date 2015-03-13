@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225161004) do
+ActiveRecord::Schema.define(version: 20150313174719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150225161004) do
   add_index "aura_transitions", ["sort_key", "aura_id"], name: "index_aura_transitions_on_sort_key_and_aura_id", unique: true, using: :btree
 
   create_table "auras", force: :cascade do |t|
-    t.string   "name",          limit: 255
+    t.string   "name",                   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "job_number_id"
@@ -37,8 +37,12 @@ ActiveRecord::Schema.define(version: 20150225161004) do
     t.datetime "end_date"
     t.text     "description"
     t.integer  "customer_id"
-    t.boolean  "ongoing",                   default: false
+    t.boolean  "ongoing",                            default: false
     t.integer  "user_id"
+    t.string   "analytics_file_name"
+    t.string   "analytics_content_type"
+    t.integer  "analytics_file_size"
+    t.datetime "analytics_updated_at"
   end
 
   add_index "auras", ["job_number_id"], name: "index_auras_on_job_number_id", using: :btree

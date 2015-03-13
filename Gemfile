@@ -42,6 +42,8 @@ gem 'bitters'
 gem 'simple_form'
 # Statesman (gocardless) for states / transitions
 gem 'statesman'
+# Paperclip for uploads
+gem 'paperclip', "~> 4.2"
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
@@ -52,8 +54,6 @@ gem 'yaml_db'
 # Rails 4.2 updates
 gem 'web-console', '~> 2.0'
 
-# Paperclip for eventual file uploads
-gem 'paperclip'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'

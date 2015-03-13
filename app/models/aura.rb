@@ -8,6 +8,18 @@ class Aura < ActiveRecord::Base
   validates_presence_of :name, :start_date, :end_date
   validates_uniqueness_of :name
 
+  has_attached_file :analytics
+  validates_attachment_content_type :analytics,
+    content_type: ["application/pdf",
+      "application/vnd.ms-excel",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "application/xlsx",
+      "application/csv",
+      "text/plain"]
+  validates_format_of :analytics, with: %r{\.(docx|doc|xls|xlsx|pdf)}i
+
   def state_machine
     @state_machine ||= AuraStateMachine.new(self, transition_class: AuraTransition)
   end

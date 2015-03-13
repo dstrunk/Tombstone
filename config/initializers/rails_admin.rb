@@ -64,6 +64,7 @@ RailsAdmin.config do |config|
       field :start_date
       field :end_date
       field :ongoing
+      field :analytics
     end
   end
 
