@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/sign_up' => 'clearance/users#new', as: 'sign_up'
 
 
-  resources :auras
+  resources :auras, only: [:dashboard, :new, :create, :show]
 
   root to: "auras#dashboard"
 end

@@ -23,6 +23,10 @@ class AurasController < ApplicationController
     end
   end
 
+  def show
+    @aura = Aura.find(params[:id])
+  end
+
   private
   def aura_params
     params.require(:aura_form).permit(:aura_name, :description, :job_number, :customer,
