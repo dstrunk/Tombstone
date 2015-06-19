@@ -15,20 +15,20 @@ class Aura < ActiveRecord::Base
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
     to: :state_machine
 
+  def customer
+    super || NoCustomer.new
+  end
+
+  def job_number
+    super || NoJob.new
+  end
+
   def customer_name
-    if customer.nil?
-      "Communicorp"
-    else
-      customer.name
-    end
+    customer.name
   end
 
   def job_num
-    if job_number.nil?
-      "no job number"
-    else
-      "Job " + job_number.number.to_s
-    end
+    job_number.number.to_s
   end
 
   scope :unstarted, -> { self.in_state(:unstarted) }
